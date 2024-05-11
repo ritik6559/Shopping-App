@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:shoppapp/components/gobal_variables.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Map<String, Object> product;

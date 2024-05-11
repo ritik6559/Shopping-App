@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:shoppapp/components/gobal_variables.dart';
 import 'package:shoppapp/components/products_cart.dart';
+import 'package:shoppapp/screens/details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,10 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 20.0),
-                      child: Text(
-                        'Shoes\nCollection',
-                        style: Theme.of(context).textTheme.titleLarge
-                      ),
+                      child: Text('Shoes\nCollection',
+                          style: Theme.of(context).textTheme.titleLarge),
                     ),
                     const Expanded(
                       child: TextField(
@@ -105,13 +105,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: products.length,
                     itemBuilder: (context, index) {
                       final product = products[index];
-                      return ProductCard(
-                        title: product['title'] as String,
-                        price: product['price'] as double,
-                        image: product['imageUrl'] as String,
-                        backGroundColor: index.isEven
-                            ? const Color.fromRGBO(216, 240, 253, 1)
-                            : const Color.fromRGBO(245, 247, 249, 1),
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailsScreen(product: product)));
+                        },
+                        child: ProductCard(
+                          title: product['title'] as String,
+                          price: product['price'] as double,
+                          image: product['imageUrl'] as String,
+                          backGroundColor: index.isEven
+                              ? const Color.fromRGBO(216, 240, 253, 1)
+                              : const Color.fromRGBO(245, 247, 249, 1),
+                        ),
                       );
                     },
                   ),

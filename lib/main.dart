@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shoppapp/components/gobal_variables.dart';
-import 'package:shoppapp/screens/details_screen.dart';
 import 'package:shoppapp/screens/home_screen.dart';
 
 void main() {
@@ -41,9 +39,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   color: Colors.black))),
       debugShowCheckedModeBanner: false,
-      home: DetailsScreen(
-        product: products[0],
-      ),
+      home: const HomeScreen(),
     );
   }
 }
