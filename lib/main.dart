@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shoppapp/components/gobal_variables.dart';
+import 'package:shoppapp/screens/details_screen.dart';
 import 'package:shoppapp/screens/home_screen.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -15,34 +16,34 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(254, 206, 1, 1),
-        primary: const Color.fromRGBO(254, 206, 1, 1)),
-        
-        useMaterial3: true,
-        fontFamily: 'Lato',//to apply lato to whole project.
-        inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color.fromRGBO(254, 206, 1, 1),
+              primary: const Color.fromRGBO(254, 206, 1, 1)),
+          useMaterial3: true,
+          fontFamily: 'Lato', //to apply lato to whole project.
+          inputDecorationTheme: const InputDecorationTheme(
+            hintStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+            prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
           ),
-          prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
-          
-        ),
-        textTheme: const TextTheme(
-          titleMedium: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-          bodySmall: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16
-          )
-
-        ),
-      ),
+          textTheme: const TextTheme(
+              titleLarge: TextStyle(fontWeight: FontWeight.w800, fontSize: 35),
+              titleMedium: TextStyle(
+                fontWeight: FontWeight.w900,
+                fontSize: 20,
+              ),
+              bodySmall: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          appBarTheme: const AppBarTheme(
+              titleTextStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                  color: Colors.black))),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: DetailsScreen(
+        product: products[0],
+      ),
     );
   }
 }
-

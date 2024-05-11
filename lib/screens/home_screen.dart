@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shoppapp/components/gobal_variables.dart';
 import 'package:shoppapp/components/products_cart.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -18,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     selectedFilter = filters[0];
   }
@@ -33,17 +31,16 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 5.0),
             child: Column(
               children: [
-                const Row(
+                Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 20.0),
+                      padding: const EdgeInsets.only(right: 20.0),
                       child: Text(
                         'Shoes\nCollection',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 35),
+                        style: Theme.of(context).textTheme.titleLarge
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: 'Search',
