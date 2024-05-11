@@ -26,6 +26,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
       appBar: AppBar(
         title: const Text('Details'),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: Column(
         children: [
@@ -74,7 +80,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               });
                             },
                             child: Chip(
-                              backgroundColor: selectedSize == size ? Theme.of(context).colorScheme.primary: Colors.white,
+                              backgroundColor: selectedSize == size
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Colors.white,
                               label: Text(size.toString()),
                             ),
                           ),
