@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:shoppapp/components/gobal_variables.dart';
-import 'package:shoppapp/components/products_cart.dart';
+import 'package:shoppapp/widgets/products_cart.dart';
 import 'package:shoppapp/screens/details_screen.dart';
 
 
 class ProductList extends StatefulWidget {
-  ProductList({super.key});
+  const ProductList({super.key});
 
   @override
   State<ProductList> createState() => _ProductListState();
