@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       backgroundColor: Colors.white,
       body: IndexedStack(
         //to maintain the scroll position on the given screen.

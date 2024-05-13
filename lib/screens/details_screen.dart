@@ -42,7 +42,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const Spacer(),
-          Image.asset(widget.product['imageUrl'] as String),
+          Image.asset(widget.product['imageUrl'] as String,
+          height: 250,),
           const Spacer(
               flex:
                   2), //beacuse if we don't specify flex = 2 then by default it both spacer will take half half space thus to leave more space in the bottom we specify flex = 2.
@@ -133,7 +134,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
-                        minimumSize: const Size(double.infinity, 50),
+                        fixedSize: const Size(350, 50),
                       ),
                       icon: const Icon(
                         Icons.shopping_cart,
