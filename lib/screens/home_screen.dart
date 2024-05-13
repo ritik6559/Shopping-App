@@ -23,20 +23,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: Colors.white,
-      body: IndexedStack(//to maintain the scroll position on the given screen. 
-      index: currentPage,
-      children: screens,
+      body: IndexedStack(
+        //to maintain the scroll position on the given screen.
+        index: currentPage,
+        children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 35,
-        selectedLabelStyle:const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w700
-        ),
-        unselectedLabelStyle: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold
-        ),
+        selectedLabelStyle:
+            const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+        unselectedLabelStyle:
+            const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         currentIndex: currentPage,
         onTap: (value) {
           setState(() {

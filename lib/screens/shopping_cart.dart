@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:shoppapp/components/gobal_variables.dart';
+import 'package:provider/provider.dart';
+import 'package:shoppapp/provider/cart_provider.dart';
 
-class CartPage extends StatefulWidget {
+class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
   @override
-  State<CartPage> createState() => _CartPageState();
-}
-
-class _CartPageState extends State<CartPage> {
-  @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context).cart;
+
     return Scaffold(
       //we can put scaffold inside a scaffold.
       appBar: AppBar(
@@ -35,7 +33,52 @@ class _CartPageState extends State<CartPage> {
             ),
             subtitle: Text('Size ${cartItem['size']}'),
             trailing: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text(
+                          'Delete product',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        content: const Text(
+                            'Are you sure you want to delete the product from cart'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'No',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .deleteProduct(cartItem);
+                              Navigator.of(context).pop();
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('Item deleted'),
+                              ));
+                            },
+                            child: const Text(
+                              'Yes',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    });
+              },
               icon: const Icon(Icons.delete, color: Colors.red),
             ),
           );

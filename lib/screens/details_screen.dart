@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoppapp/provider/cart_provider.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Map<String, Object> product;
@@ -96,7 +98,39 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (selectedSize == -1) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Please select a size'),
+                            duration: Durations.extralong1,
+                          ));
+                        } else {
+                          Provider.of<CartProvider>(
+                            context,
+                            listen: false,
+                          ).addProduct(
+                            {
+                              'id': widget.product['id'],
+                              'title': widget.product['title'],
+                              'price': widget.product['price'],
+                              'imageUrl': widget.product['imageUrl'],
+                              'company': widget.product['company'],
+                              'size': selectedSize
+                            },
+                          ); //we can check the type of provider by hovering over the changenotifier provider in main.dart.
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text(
+                              'Item added to cart',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            duration: Durations.extralong1,
+                            backgroundColor: Colors.white,
+                          ));
+                          Navigator.of(context).pop();
+                        }
+                      },
                       style: TextButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         minimumSize: const Size(double.infinity, 50),
