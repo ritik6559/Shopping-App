@@ -42,8 +42,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const Spacer(),
-          Image.asset(widget.product['imageUrl'] as String,
-          height: 250,),
+          Image.asset(
+            widget.product['imageUrl'] as String,
+            height: 250,
+          ),
           const Spacer(
               flex:
                   2), //beacuse if we don't specify flex = 2 then by default it both spacer will take half half space thus to leave more space in the bottom we specify flex = 2.
@@ -120,15 +122,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               'size': selectedSize
                             },
                           ); //we can check the type of provider by hovering over the changenotifier provider in main.dart.
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text(
-                              'Item added to cart',
-                              style: TextStyle(color: Colors.black),
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Item added to cart',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              duration: Durations.extralong1,
+                              backgroundColor: Colors.white,
                             ),
-                            duration: Durations.extralong1,
-                            backgroundColor: Colors.white,
-                          ));
+                          );
                           Navigator.of(context).pop();
                         }
                       },
