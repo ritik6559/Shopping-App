@@ -25,19 +25,58 @@ class CartPage extends StatelessWidget {
           final cartItem = cart[index];
           return Dismissible(
             background: Container(
-              decoration:const BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Colors.red,
-                  Color.fromARGB(255, 236, 97, 87),
-                  Color.fromARGB(255, 200, 108, 101),
-                  Colors.white])
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.red,
+                    Color.fromARGB(255, 236, 97, 87),
+                    Color.fromARGB(255, 200, 108, 101),
+                    Colors.white
+                  ],
+                ),
               ),
             ),
             key: Key(cartItem['title']),
-
             onDismissed: (direction) {
               Provider.of<CartProvider>(context, listen: false)
                   .deleteProduct(cartItem);
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(
+                      'Delete product',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    content: const Text(
+                        'Are you sure you want to delete the product from cart'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'No',
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Provider.of<CartProvider>(context)
+                              .deleteProduct(cartItem);
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'Yes',
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text('Item deleted'),
               ));
@@ -46,7 +85,7 @@ class CartPage extends StatelessWidget {
               leading: CircleAvatar(
                 radius: 35,
                 backgroundImage: AssetImage(cartItem['imageUrl']
-                    as String), //now background image requires image provider not a widge since image.asset is a widget we don't use it here insted we use assetimage
+                    as String), //now background image requires image provider not a widget since image.asset is a widget we don't use it here insted we use assetimage
               ),
               title: Text(
                 cartItem['title'] as String,
