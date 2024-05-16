@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:shoppapp/components/gobal_variables.dart';
-import 'package:shoppapp/widgets/products_cart.dart';
+import 'package:shoppapp/widgets/products_card.dart';
 import 'package:shoppapp/screens/details_screen.dart';
 
 class ProductList extends StatefulWidget {
