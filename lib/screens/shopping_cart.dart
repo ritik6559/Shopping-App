@@ -40,43 +40,7 @@ class CartPage extends StatelessWidget {
             onDismissed: (direction) {
               Provider.of<CartProvider>(context, listen: false)
                   .deleteProduct(cartItem);
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: Text(
-                      'Delete product',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    content: const Text(
-                        'Are you sure you want to delete the product from cart'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text(
-                          'No',
-                          style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Provider.of<CartProvider>(context)
-                              .deleteProduct(cartItem);
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text(
-                          'Yes',
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              );
+              
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text('Item deleted'),
               ));
